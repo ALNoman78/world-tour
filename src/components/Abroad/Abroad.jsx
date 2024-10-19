@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Abroad.css'
 
-const Abroad = ({props}) => {
+const Abroad = ({props , handlerCountry}) => {
     // console.log(props);
     // const [isVisit , setVisited] = useState(false) // initial value false nite hbe
 
@@ -15,10 +15,12 @@ const Abroad = ({props}) => {
     const handler = () => {
         setVisited(!isVisited)
     }
+
+
     const {name , flags , demonyms , population , area , cca3} = props
     return (
         <div className={`abroad ${isVisited ? 'visited' : 'not-visited'}`}>
-            <h3>Country Name : {name?.common}</h3>
+            <h3 style={{color : isVisited ? 'red' : 'green'}}>Country Name : {name?.common}</h3>
             <img src={flags?.png} alt="" />
             <p>Language : {demonyms?.eng?.f}</p>
             <p>Population  : {population}</p>
@@ -29,7 +31,8 @@ const Abroad = ({props}) => {
             {/* {
                 isVisit ? 'I visited this country' : 'I want to visit this country'
             } */}
-
+            <button onClick={() => handlerCountry (props)}>Mark as visited</button>
+            <br /><br />
             <button onClick={handler}>{isVisited ? 'Visited' : 'On planning'}</button>
             <br />
             {
