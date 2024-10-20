@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Abroad.css'
 
-const Abroad = ({props , handlerCountry}) => {
+const Abroad = ({ props , visitedHandler}) => {
     // console.log(props);
     // const [isVisit , setVisited] = useState(false) // initial value false nite hbe
 
@@ -9,19 +9,17 @@ const Abroad = ({props , handlerCountry}) => {
     //     // setVisited(true) value update kore true kore dite hbe
     //     setVisited(!isVisit) // if i want to toggle this button simply use bang sign / not sign [!] like this
     // }
-
-    const [isVisited , setVisited] = useState(false)
+    
+    const [isVisited, setVisited] = useState(false)
 
     const handler = () => {
         setVisited(!isVisited)
     }
-
-
-    const {name , flags , demonyms , population , area , cca3} = props
+    const { name, flags, demonyms, population, area, cca3 } = props
     return (
         <div className={`abroad ${isVisited ? 'visited' : 'not-visited'}`}>
-            <h3 style={{color : isVisited ? 'red' : 'green'}}>Country Name : {name?.common}</h3>
-            <img src={flags?.png} alt="" />
+            <h3 style={{ color: isVisited ? 'red' : 'green' }}>Country Name : {name?.common}</h3>
+            <img style={{width : '300px' , height : '200px' , objectFit : 'cover'}} src={flags?.png} alt="" />
             <p>Language : {demonyms?.eng?.f}</p>
             <p>Population  : {population}</p>
             <p>Area : {area}</p>
@@ -31,7 +29,7 @@ const Abroad = ({props , handlerCountry}) => {
             {/* {
                 isVisit ? 'I visited this country' : 'I want to visit this country'
             } */}
-            <button onClick={() => handlerCountry (props)}>Mark as visited</button>
+            <button onClick={() => visitedHandler(props)}>Mark as visited Country</button>
             <br /><br />
             <button onClick={handler}>{isVisited ? 'Visited' : 'On planning'}</button>
             <br />

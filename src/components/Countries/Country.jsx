@@ -4,39 +4,42 @@ import Abroad from "../Abroad/Abroad";
 import './Countries.css'
 
 const Country = () => {
-    
-    const [countries , setCountries] = useState([]);
-    const [markVisited , setMarkVisited] = useState([])
 
-    const handlerCountry = (country) =>  {
-        const newVisitedCountries = [...markVisited,country]
-        setMarkVisited(newVisitedCountries)
+    const [countries, setCountries] = useState([]);
+    // 1 . create a state if you want to access this other component
+    const [markVisitedCountry, setMarkVisitedCountry] = useState([])
+
+    const visitedHandler = (country) => {
+        const newVisitedCountry = [...markVisitedCountry , country]
+        setMarkVisitedCountry(newVisitedCountry);
     }
 
     useEffect(() => {
         fetch('https://restcountries.com/v3.1/all')
-        .then(res => res.json())
-        .then(data => setCountries(data))
+            .then(res => res.json())
+            .then(data => setCountries(data))
     }, [])
 
     return (
         <div>
             <h3>Countries {countries.length}</h3>
             <div>
-                <h3>Visited Country list : {markVisited.length} </h3>
+                <h4>Visited Country list : {markVisitedCountry.length}</h4>
                 <ul>
                     {
-                        markVisited.map((li) => <li key={markVisited.ccn3}>{li.name.common}</li>)
+                        markVisitedCountry.map((country) => {
+                            <li key={country.ccn3}>{country.name.common}</li>
+                        })
                     }
                 </ul>
             </div>
             <div className="country">
-            {
-                countries.map((country) => 
-                <Abroad key={country.ccn3} 
-                handlerCountry = {handlerCountry}
-                props={country}></Abroad>)
-            }
+                {
+                    countries.map((country , i) =>
+                        <Abroad key={i}
+                            props={country}
+                            visitedHandler={visitedHandler}></Abroad>)
+                }
             </div>
         </div>
     );
