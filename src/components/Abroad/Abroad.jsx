@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Abroad.css'
 
-const Abroad = ({ props , visitedHandler}) => {
+const Abroad = ({ props , visitedHandler , flagHandler}) => {
     // console.log(props);
     // const [isVisit , setVisited] = useState(false) // initial value false nite hbe
 
@@ -31,6 +31,7 @@ const Abroad = ({ props , visitedHandler}) => {
             } */}
             <button onClick={() => visitedHandler(props)}>Mark as visited Country</button>
             <br /><br />
+            <button onClick={() => flagHandler(props.flags.png)}>Add Flag</button>
             <button onClick={handler}>{isVisited ? 'Visited' : 'On planning'}</button>
             <br />
             {

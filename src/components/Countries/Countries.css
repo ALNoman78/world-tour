@@ -3,3 +3,17 @@
     grid-template-columns: repeat(3 , 1fr);
     gap: 10px;
 }
+
+.flag-image{
+    width: 100px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.flag-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 23px;
+    border: 2px solid tomato;
+}
